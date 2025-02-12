@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Be My Valentine, Melissa?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+            font-family: Arial, sans-serif;
+            background-color: pink;
+            text-align: center;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            font-size: 2em;
+            color: red;
+            animation: glow 1.5s infinite alternate;
+        }
+        @keyframes glow {
+            from {
+                text-shadow: 0 0 5px red;
+            }
+            to {
+                text-shadow: 0 0 20px red;
+            }
+        }
+        .buttons {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 1.5em;
+            padding: 10px 20px;
+            margin: 10px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+        }
+        .yes {
+            background-color: red;
+            color: white;
+            animation: pulse 1s infinite alternate;
+        }
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+            to {
+                transform: scale(1.1);
+            }
+        }
+        .no {
+            background-color: white;
+            color: red;
+            position: absolute;
+        }
+        .gif {
+            margin-bottom: 20px;
+        }
+        .gif img {
+            max-width: 300px;
+            border-radius: 10px;
+        }
+        .photo {
+            margin-top: 20px;
+        }
+        .photo img {
+            max-width: 300px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+        }
+        .message {
+            margin-top: 10px;
+            font-size: 1.2em;
+            color: darkred;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="gif">
+        <img src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExN2V4ZWQ4bGx1MGZqZzY5ZW1yOXdjenZ0YzBleXlkdmRjYnAzMW02MiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/JdGtne8cU2gY4wXtVM/giphy.gif" alt="Cute gif">
+    </div>
+    <h1>Melissa, do you wanna be my valentine?</h1>
+    <div class="buttons">
+        <button class="yes" onclick="sayYes()">Yes</button>
+        <button class="no" onmouseover="moveButton(this)">No</button>
+    </div>
+    <p class="message" id="warningMessage">You can't say no, don't even try it</p>
+    <p class="message" id="secondWarningMessage">Come on, give up</p>
+    <p class="message" id="thirdWarningMessage">Just say yes</p>
+    
+    <script>
+        let moveCount = 0;
+
+        function sayYes() {
+            document.body.innerHTML = '<h1>Yay! I love you, Melissa! ❤️</h1>' +
+                                      '<div class="photo"><img src="C34D3ABF-AE41-4DD8-B125-79282AB19D49.jpeg" alt="Us together"></div>';
+        }
+        
+        function moveButton(btn) {
+            moveCount++;
+            let x = Math.random() * (window.innerWidth - btn.clientWidth);
+            let y = Math.random() * (window.innerHeight - btn.clientHeight);
+            btn.style.left = `${x}px`;
+            btn.style.top = `${y}px`;
+            
+            if (moveCount >= 5) {
+                document.getElementById("warningMessage").style.display = "block";
+            }
+            if (moveCount >= 10) {
+                document.getElementById("secondWarningMessage").style.display = "block";
+            }
+            if (moveCount >= 15) {
+                document.getElementById("thirdWarningMessage").style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>
